@@ -516,15 +516,130 @@ class StudentManagementSystem {
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("|\t\t\t\tDelete Student Profile\t\t\t|");
         System.out.println("-------------------------------------------------------------------------\n");
+        System.out.print("Enter Student Registration No: ");
+        String id = input.next();
+
+        int index = findStudent(id);
+        if (index != -1) {
+            // Clear the lines
+            System.out.print("\033[1A");
+            System.out.print("\033[0J");
+
+            System.out.println(studentsArray[index].toString());
+            L: do {
+                System.out.print("\nDo you want to delete this student profile (Y/N): ");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    // delete student
+                    Student[] tempstuArray = new Student[studentsArray.length - 1];
+                    
+
+                    for (int i = 0; i < index; i++) {
+                        tempstuArray[i] = studentsArray[i];
+                    }
+                    for (int i = index; i < tempstuArray.length; i++) {
+                        tempstuArray[i] = studentsArray[i + 1];
+                    }
+
+                    studentsArray = tempstuArray;
+
+                    System.out.println("\n\tStudent was successfully deleted from the system.");
+
+                    L1: do {
+                        System.out.print("\nDo you want to delete another student profile (Y/N): ");
+                        String option1 = input.next();
+                        if (option1.equalsIgnoreCase("Y")) {
+                            clearConsole();
+                            deleteStudentsProfile();
+                        } else if (option1.equalsIgnoreCase("N")) {
+                            clearConsole();
+                            homePage();
+                        } else {
+                            System.out.println("\tInvalid option..input again...");
+                            continue L1;
+                        }
+                    } while (true);
+
+                } else if (option.equalsIgnoreCase("N")) {
+                    L1: do {
+                        System.out.print("\nDo you want to delete another student profile (Y/N): ");
+                        String option1 = input.next();
+                        if (option1.equalsIgnoreCase("Y")) {
+                            clearConsole();
+                            deleteStudentsProfile();
+                        } else if (option1.equalsIgnoreCase("N")) {
+                            clearConsole();
+                            homePage();
+                        } else {
+                            System.out.println("\tInvalid option..input again...");
+                            continue L1;
+                        }
+                    } while (true);
+                } else {
+                    System.out.println("\tInvalid option..input again...");
+                    continue L;
+                }
+            } while (true);
+
+        } else {
+            System.out.print("\n\tThis student does not exist in the system.\n");
+            L: do {
+                System.out.print("\nDo you want to delete another student profile (Y/N): ");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    clearConsole();
+                    deleteStudentsProfile();
+                } else if (option.equalsIgnoreCase("N")) {
+                    clearConsole();
+                    homePage();
+                } else {
+                    System.out.println("\tInvalid option..input again...");
+                    continue L;
+                }
+            } while (true);
+
+        }
+
     }
-
-
+    
     // View Students Profile
     public static void viewStudentsProfile() {
         Scanner input = new Scanner(System.in);
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("|\t\t\t\tView Student's Profile\t\t\t|");
         System.out.println("-------------------------------------------------------------------------\n");
+
+        System.out.print("Enter Student Registration No: ");
+        String id = input.next();
+
+        int index = findStudent(id);
+        if (index != -1) {
+            // Clear the lines
+            System.out.print("\033[1A");
+            System.out.print("\033[0J");
+
+            System.out.println(studentsArray[index].toString()); 
+
+
+        } else {
+            System.out.print("\n\tThis student does not exist in the system.");
+
+        }
+            L: do {
+                System.out.print("\nDo you want to search another student details (Y/N): ");
+                String option = input.next();
+                if (option.equalsIgnoreCase("Y")) {
+                    clearConsole();
+                    viewStudentsProfile();
+                } else if (option.equalsIgnoreCase("N")) {
+                    clearConsole();
+                    homePage();
+                } else {
+                    System.out.println("\tInvalid option..input again...");
+                    continue L;
+                }
+            } while (true);   
+
     }
 
     // Batch Management
