@@ -332,7 +332,6 @@ class StudentManagementSystem {
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("|\t\t\t\tAdd Student\t\t\t\t|");
         System.out.println("-------------------------------------------------------------------------\n");
-
         L1: do {
             System.out.print("Enter Batch Number (Students should be added): ");
             int batch = input.nextInt();
@@ -355,9 +354,7 @@ class StudentManagementSystem {
 
                         }
                         tempstuArray[tempstuArray.length - 1] = new Student(id, nic, name, -1, -1);
-
                         studentsArray = tempstuArray;
-
                         System.out.print("\n\n\tStudent Registration No - " + id);
                         System.out.print("\n\nStudent was successfully added to the system.");
                         L2: do {
@@ -374,7 +371,6 @@ class StudentManagementSystem {
                                 continue L2;
                             }
                         } while (true);
-
                     } else {
                         System.out.print("\n\tThis student is already added to the system.");
                         L2: do {
@@ -394,9 +390,7 @@ class StudentManagementSystem {
                             }
                         } while (true);
                     }
-
                 } while (true);
-
             } else {
                 System.out.print("\n\n\tStudents cannot be added to this batch because enrollment is closed.");
                 L2: do {
@@ -415,7 +409,6 @@ class StudentManagementSystem {
                 } while (true);
             }
         } while (true);
-
     }
 
     // find student
@@ -436,12 +429,10 @@ class StudentManagementSystem {
         System.out.println("-------------------------------------------------------------------------\n");
         System.out.print("Enter Student Registration No: ");
         String id = input.next();
-
         int index = findStudent(id);
         if (index != -1) {
             System.out.println("\n\tStudet Name     : " + studentsArray[index].getName());
             System.out.println("\tStudet NIC     : " + studentsArray[index].getNic());
-
             System.out.println("\nWhat do you want to update ? ");
             System.out.println("\t(01) Student Name ");
             System.out.println("\t(02) Student NIC ");
@@ -459,9 +450,7 @@ class StudentManagementSystem {
                     String newName = input.next();
                     studentsArray[index].setName(newName);
                     System.out.println("\n\n\tStudent name updated successfully...");
-
                     break;
-
                 case 2:
                     clearConsole();
                     System.out.println("\nStudent NIC Update");
@@ -478,7 +467,6 @@ class StudentManagementSystem {
                         System.out.println("\n\tThis student is already added to the system...");
                     }
             }
-
             L: do {
                 System.out.print("\nDo you want to update another student details (Y/N): ");
                 String option1 = input.next();
@@ -510,7 +498,6 @@ class StudentManagementSystem {
                 }
             } while (true);
         }
-
     }
 
     // Delete Student
@@ -610,21 +597,16 @@ class StudentManagementSystem {
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("|\t\t\t\tView Student's Profile\t\t\t|");
         System.out.println("-------------------------------------------------------------------------\n");
-
         System.out.print("Enter Student Registration No: ");
         String id = input.next();
-
         int index = findStudent(id);
         if (index != -1) {
             // Clear the lines
             System.out.print("\033[1A");
             System.out.print("\033[0J");
-
             System.out.println(studentsArray[index].toString());
-
         } else {
             System.out.print("\n\tThis student does not exist in the system.");
-
         }
         L: do {
             System.out.print("\nDo you want to search another student details (Y/N): ");
@@ -640,7 +622,6 @@ class StudentManagementSystem {
                 continue L;
             }
         } while (true);
-
     }
 
     // Batch Management
@@ -655,10 +636,8 @@ class StudentManagementSystem {
 
         Scanner input = new Scanner(System.in);
         do {
-
             System.out.print("\nEnter an option to continue > ");
             int option = input.nextInt();
-
             switch (option) {
                 case 1:
                     clearConsole();
@@ -687,14 +666,12 @@ class StudentManagementSystem {
         System.out.println("-------------------------------------------------------------------------\n");
         System.out.print("Enter Batch Number : ");
         String batch = input.nextLine();
-
         Batch[] tempBatchArray = new Batch[batchArray.length + 1];
         for (int i = 0; i < batchArray.length; i++) {
             tempBatchArray[i] = batchArray[i];
         }
         tempBatchArray[tempBatchArray.length - 1] = new Batch(batch, 1, 0);
         tempBatchArray = batchArray;
-
         System.out.print("\nBatch was successfully added to the system.\n");
         L: do {
             System.out.print("\nDo you want to add another batch to the system (Y/N): ");
@@ -731,14 +708,11 @@ class StudentManagementSystem {
         System.out.print("Enter Batch Number : ");
         String batch = input.nextLine();
         int index = findBatch(batch);
-
         if (index != -1) {
             System.out.println("Current Status : "
                     + (batchArray[index].getStatus() == 1 ? "ENROLLMENT OPEN" : "ENROLLMENT CLOSED"));
-
             if (batchArray[index].getStatus() == 0) {
                 System.out.println("\nThis batch is already CLOSED and cannot be updated.");
-
                 L: do {
                     System.out.print("\nDo you want to update another batch details (Y/N): ");
                     String option1 = input.next();
@@ -753,7 +727,6 @@ class StudentManagementSystem {
                         continue L;
                     }
                 } while (true);
-
             } else {
                 L: do {
                     System.out.print("\nDo you want to change the batch status to ENROLLMENT CLOSED" + "(Y/N) ? ");
@@ -769,7 +742,6 @@ class StudentManagementSystem {
                         continue L;
                     }
                 } while (true);
-
                 L: do {
                     System.out.print("\nDo you want to update another batch details (Y/N): ");
                     String option1 = input.next();
@@ -784,9 +756,7 @@ class StudentManagementSystem {
                         continue L;
                     }
                 } while (true);
-
             }
-
         } else {
             System.out.print("\n\tThis batch does not exist in the system.");
             L: do {
@@ -804,7 +774,6 @@ class StudentManagementSystem {
                 }
             } while (true);
         }
-
     }
 
     // View Batch
@@ -813,12 +782,10 @@ class StudentManagementSystem {
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("|\t\t\t\tView Batch\t\t\t\t|");
         System.out.println("-------------------------------------------------------------------------\n");
-
         System.out.println("\n----------------------------------------------------");
         String line1 = String.format("%-5s%-12s%-15s%-20s", "No", "Batch No", "Student Count", "Status");
         System.out.println(line1);
         System.out.println("----------------------------------------------------");
-
         for (int i = 0; i < batchArray.length; i++) {
             String line = String.format(
                     "%-5d%-12s%-15d%-20s",
@@ -829,7 +796,6 @@ class StudentManagementSystem {
             System.out.println(line);
             System.out.println("----------------------------------------------------");
         }
-
         L2: do {
             System.out.print("\nDo you want to go to the home page (Y/N): ");
             String option = input.next();
@@ -844,7 +810,6 @@ class StudentManagementSystem {
                 continue L2;
             }
         } while (true);
-
     }
 
     // Grade Management
@@ -855,13 +820,10 @@ class StudentManagementSystem {
         System.out.println("[1] PRF Marks Update");
         System.out.println("\n[2] DBMS Marks Update ");
         System.out.println("\n[3] Exit");
-
         Scanner input = new Scanner(System.in);
         do {
-
             System.out.print("\nEnter an option to continue > ");
             int option = input.nextInt();
-
             switch (option) {
                 case 1:
                     clearConsole();
@@ -887,36 +849,25 @@ class StudentManagementSystem {
 
         System.out.print("Enter Student Registration No: ");
         String id = input.next();
-
         int index = findStudent(id);
         if (index != -1) {
             // Clear the lines
             System.out.print("\033[1A");
             System.out.print("\033[0J");
-
             System.out.println(studentsArray[index].toString());
-
             if (studentsArray[index].getDbms() == -1) {
                 System.out.println(
                         "\nThis student was absent from the exam. You can update the marks if they participate in it..");
-
                 System.out.print("\tEnter PRF Marks : ");
                 studentsArray[index].setPrf(input.nextInt());
-
                 System.out.println("\n\tThis student PRF Marks updated successfully...");
-
             } else if (studentsArray[index].getDbms() == -2) {
                 System.out.print("\tEnter PRF Marks : ");
                 studentsArray[index].setPrf(input.nextInt());
-
                 System.out.println("\n\tThis student PRF Marks updated successfully...");
-
             } else {
-
                 System.out.println("\nThis student has already completed the PRF module.");
-
                 System.out.print("\tPRF Marks : " + studentsArray[index].getDbms());
-
                 L: do {
                     System.out.print("\n\nDo you want to update this student's PRF marks?");
                     String option = input.next();
@@ -934,9 +885,7 @@ class StudentManagementSystem {
                         continue L;
                     }
                 } while (true);
-
             }
-
             L: do {
                 System.out.print("\nDo you want to update another student PRF marks (Y/N): ");
                 String option1 = input.next();
@@ -951,7 +900,6 @@ class StudentManagementSystem {
                     continue L;
                 }
             } while (true);
-
         } else {
             System.out.print("\n\tThis student does not exist in the system.");
             L: do {
@@ -968,7 +916,6 @@ class StudentManagementSystem {
                     continue L;
                 }
             } while (true);
-
         }
     }
 
@@ -981,7 +928,6 @@ class StudentManagementSystem {
 
         System.out.print("Enter Student Registration No: ");
         String id = input.next();
-
         int index = findStudent(id);
         if (index != -1) {
             // Clear the lines
@@ -989,28 +935,19 @@ class StudentManagementSystem {
             System.out.print("\033[0J");
 
             System.out.println(studentsArray[index].toString());
-
             if (studentsArray[index].getDbms() == -1) {
                 System.out.println(
                         "\nThis student was absent from the exam. You can update the marks if they participate in it..");
-
                 System.out.print("\tEnter DBMS Marks : ");
                 studentsArray[index].setDbms(input.nextInt());
-
                 System.out.println("\n\tThis student DBMS Marks updated successfully...");
-
             } else if (studentsArray[index].getDbms() == -2) {
                 System.out.print("\tEnter DBMS Marks : ");
                 studentsArray[index].setDbms(input.nextInt());
-
                 System.out.println("\n\tThis student DBMS Marks updated successfully...");
-
             } else {
-
                 System.out.println("\nThis student has already completed the DBMS module.");
-
                 System.out.print("\tDBMS Marks : " + studentsArray[index].getDbms());
-
                 L: do {
                     System.out.print("\n\nDo you want to update this student's DBMS marks?");
                     String option = input.next();
@@ -1028,9 +965,7 @@ class StudentManagementSystem {
                         continue L;
                     }
                 } while (true);
-
             }
-
             L: do {
                 System.out.print("\nDo you want to update another student DBMS marks (Y/N): ");
                 String option1 = input.next();
@@ -1045,7 +980,6 @@ class StudentManagementSystem {
                     continue L;
                 }
             } while (true);
-
         } else {
             System.out.print("\n\tThis student does not exist in the system.");
             L: do {
@@ -1062,7 +996,6 @@ class StudentManagementSystem {
                     continue L;
                 }
             } while (true);
-
         }
     }
 
@@ -1071,6 +1004,29 @@ class StudentManagementSystem {
         System.out.println("---------------------------------------------------------------------------------");
         System.out.println("|\t\t\t\tReport Generator\t\t\t\t|");
         System.out.println("---------------------------------------------------------------------------------\n");
+
+        Scanner input = new Scanner(System.in);
+        do {
+            System.out.print("\n\nEnter an option to continue > ");
+            int option = input.nextInt();
+            switch (option) {
+                case 1:
+                    clearConsole();
+                    studentRegistrationReport();
+                    break;
+                case 2:
+                    clearConsole();
+                    batchwiseStudentReport();
+                    break;
+                case 3:
+                    clearConsole();
+                    industryTrainingEligibility();
+                    break;
+                case 4:
+                    exittoHomePage();
+                    break;
+            }
+        } while (true);
     }
 
     // Student Registration Report
@@ -1081,6 +1037,54 @@ class StudentManagementSystem {
         System.out.println("\t\t\t\t\t     Student Registration Report    \t\t\t\t\t\t\t");
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------------------------\n");
+
+        System.out.println(
+                "\n----------------------------------------------------------------------------------------------------------------------------");
+        String line1 = String.format("%-5s%-18s%-40s%-25s%-15s%-15s%-15s", "No", "Registration No", "Student Name",
+                "NIC", "PRF Marks", "DBMS Marks", "GPA");
+        System.out.println(line1);
+        System.out.println(
+                "----------------------------------------------------------------------------------------------------------------------------");
+
+        // Manual bubble sort (A to Z)
+        Student[] tempstuArray = new Student[studentsArray.length];
+        for (int i = 0; i < tempstuArray.length - 1; i++) {
+            for (int j = 0; j < tempstuArray.length - 1 - i; j++) {
+                if (tempstuArray[j].getName().compareToIgnoreCase(tempstuArray[j + 1].getName()) > 0) {
+                    // Swap students reference
+                    Student stu = tempstuArray[j];
+                    tempstuArray[j] = tempstuArray[j + 1];
+                    tempstuArray[j + 1] = tempstuArray[j];
+                }
+            }
+        }
+        for (int i = 0; i < tempstuArray.length; i++) {
+            String line = String.format(
+                    "%-5d%-18s%-40s%-14s%15d%15d%15.2f",
+                    (i + 1),
+                    tempstuArray[i].getRegNo(),
+                    tempstuArray[i].getName(),
+                    tempstuArray[i].getNic(),
+                    tempstuArray[i].getPrf(),
+                    tempstuArray[i].getDbms(),
+                    tempstuArray[i].calculateGPA()
+            );
+            System.out.println(line);
+        }
+        L2: do {
+            System.out.print("\nDo you want to go to homepage (Y/N): ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                clearConsole();
+                homePage();
+            } else if (option.equalsIgnoreCase("N")) {
+                clearConsole();
+                exit();
+            } else {
+                System.out.println("\tInvalid option..input again...");
+                continue L2;
+            }
+        } while (true);
     }
 
     // Batch-wise Student Report
@@ -1089,16 +1093,66 @@ class StudentManagementSystem {
         System.out.println("-------------------------------------------------------------------------");
         System.out.println("|\t\t\tBatch-wise Student Report\t\t\t|");
         System.out.println("-------------------------------------------------------------------------\n");
+
+        for (int i = 0; i < batchArray.length; i++) {
+            System.out.println("[" + (i + 1) + "] " + batchArray[i].getBatchId() + " Batch");
+        }
+        System.out.println("\n[" + (i + 1) + "] " + "Exit");
+        System.out.print("\n\nEnter an option to continue > ");
+        int option = input.nextInt();
+        if (option < batchArray.length) {
+            batchReportPrint(batchArray[option - 1]);
+        } else {
+            exit();
+        }
     }
 
     // batchReportPrint
-    public static void batchReportPrint(String batch) {
+    public static void batchReportPrint(Batch batch) {
         Scanner input = new Scanner(System.in);
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------------------------");
         System.out.println("|\t\t\t\t\t     " + "" + " Batch Student Report    \t\t\t\t\t\t\t|");
         System.out.println(
                 "----------------------------------------------------------------------------------------------------------------------------\n");
+        System.out.println(
+                "\n-----------------------------------------------------------------------------------------------------------------------------");
+        String line1 = String.format("%-5s%-18s%-40s%-25s%-15s%-15s%-15s", "No", "Registration No", "Student Name",
+                "NIC", "PRF Marks", "DBMS Marks", "GPA");
+        System.out.println(line1);
+        System.out.println(
+                "-----------------------------------------------------------------------------------------------------------------------------");
+        int no = 1;
+        for (int i = 0; i < studentsArray.length; i++) {
+            if (batch.getBatchId().equals(studentsArray[i].getRegNo().substring(4, 7))) {
+                String line = String.format(
+                        "%-5d%-18s%-40s%-14s%15d%15d%15.2f",
+                        no,
+                        studentsArray[i].getRegNo(),
+                        studentsArray[i].getName(),
+                        studentsArray[i].getNic(),
+                        studentsArray[i].getPrf(),
+                        studentsArray[i].getDbms(),
+                        studentsArray[i].calculateGPA());
+                System.out.println(line);
+                no++;
+            }
+        }
+
+        L2: do {
+            System.out.print("\n\nDo you want to another batch report (Y/N): ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                clearConsole();
+                batchwiseStudentReport();
+            } else if (option.equalsIgnoreCase("N")) {
+                clearConsole();
+                homePage();
+            } else {
+                System.out.println("\tInvalid option..input again...");
+                continue L2;
+            }
+        } while (true);
     }
 
     // Industry Training Eligibility
@@ -1109,6 +1163,49 @@ class StudentManagementSystem {
         System.out.println("\t\t\t\t Industry Training Eligibility Student Report\t\t\t\t\t\t");
         System.out.println(
                 "-----------------------------------------------------------------------------------------------------------------------------");
+
+        System.out.println(
+                "\n-----------------------------------------------------------------------------------------------------------------------------");
+        String line1 = String.format("%-5s%-18s%-40s%-25s%-15s%-15s%-15s", "No", "Registration No", "Student Name",
+                "NIC", "PRF Marks", "DBMS Marks", "GPA");
+        System.out.println(line1);
+        System.out.println(
+                "-----------------------------------------------------------------------------------------------------------------------------");
+        int no = 1;
+        for (int i = 0; i < studentsArray.length; i++) {
+            if (studentsArray[i].getPrf() == -1 || studentsArray[i].getPrf() == -2 || studentsArray[i].getDbms() == -1
+                    || studentsArray[i].getDbms() == -2 || studentsArray[i].getPrf() < 50
+                    || studentsArray[i].getDbms() < 50 || studentsArray[i].calculateGPA() < 3.25) {
+                continue;
+            } else {
+                String line = String.format(
+                        "%-5d%-18s%-40s%-14s%15d%15d%15.2f",
+                        no,
+                        studentsArray[i].getRegNo(),
+                        studentsArray[i].getName(),
+                        studentsArray[i].getNic(),
+                        studentsArray[i].getPrf(),
+                        studentsArray[i].getDbms(),
+                        studentsArray[i].calculateGPA());
+                System.out.println(line);
+                no++;
+            }
+        }
+
+        L2: do {
+            System.out.print("\nDo you want to go to homepage (Y/N): ");
+            String option = input.next();
+            if (option.equalsIgnoreCase("Y")) {
+                clearConsole();
+                homePage();
+            } else if (option.equalsIgnoreCase("N")) {
+                clearConsole();
+                exit();
+            } else {
+                System.out.println("\tInvalid option..input again...");
+                continue L2;
+            }
+        } while (true);
     }
 
     // Exit
@@ -1143,5 +1240,4 @@ class StudentManagementSystem {
         initializeBatches();
         homePage();
     }
-
 }

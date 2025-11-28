@@ -56,11 +56,11 @@ class Student{
         this.dbms = dbms;
     }
 
-    public double getGPA(){
-        return (calculateGPA(this.prf)+calculateGPA(this.dbms))/2.0;
+    public double calculateGPA(){
+        return (calculationGPA(this.prf)+calculationGPA(this.dbms))/2.0;
     }
 
-    public double calculateGPA(int marks) {
+    public double calculationGPA(int marks) {
         if (marks >= 90) return 4.25;
         else if (marks >= 80) return 4.0;
         else if (marks >= 75) return 3.7;
@@ -83,7 +83,7 @@ class Student{
                "\n\tName                : " + this.name +
                "\n\tPRF Marks          : " + (this.prf == -1 ? "Absent" : this.prf == -2 ? "Not conducted" : this.prf) +
                "\n\tDBMS Marks         : " + (this.dbms == -1 ? "Absent" : this.dbms == -2 ? "Not conducted" : this.dbms) +
-               "\n\tGPA                 : " + String.format("%.2f", getGPA());
+               "\n\tGPA                 : " + String.format("%.2f", calculateGPA());
     }
 
 
